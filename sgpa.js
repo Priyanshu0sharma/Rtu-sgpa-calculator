@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'EE': 'Electrical Engineering (EE)',
         'ME': 'Mechanical Engineering (ME)'
     };
-    
+
     if (deptDisplay) {
         deptDisplay.textContent = deptNames[SELECTED_BRANCH] || SELECTED_BRANCH;
     }
-    
+
     if (yearDisplay) {
         yearDisplay.textContent = SELECTED_YEAR;
     }
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== Submit number / preset selection ====================
     submitSubjectsBtn.addEventListener('click', () => {
         const SELECTED_BRANCH = localStorage.getItem('selectedBranch');
-        
+
         // Validate that a branch was selected
         if (!SELECTED_BRANCH) {
             alert('⚠️ Please select a B.Tech branch on the home page first!');
@@ -577,22 +577,22 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalCredits = 0;
         let totalWeightedPoints = 0;
         const subjectItems = subjectsContainer.querySelectorAll('.subject-item');
-        
+
         if (subjectItems.length === 0) {
             alert('Please add at least one subject.');
             return;
         }
-        
+
         // Calculate SGPA, skip subjects without a grade (include all grades including F)
         for (const subjectItem of subjectItems) {
             const gradeSelect = subjectItem.querySelector('.grade-select');
             const selectedGrade = gradeSelect ? gradeSelect.value : '';
-            
+
             // Skip subjects without a selected grade
             if (!selectedGrade) {
                 continue;
             }
-            
+
             const creditsInput = subjectItem.querySelector('.credits-input');
             let credits = 1;
             if (creditsInput) {
@@ -601,25 +601,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     credits = creditsValue;
                 }
             }
-            
+
             totalCredits += credits;
             totalWeightedPoints += credits * GRADE_POINTS[selectedGrade];
         }
-        
+
         // Only calculate if at least one subject has valid data
         if (totalCredits === 0) {
             alert('Please select at least one grade.');
             return;
         }
-        
+
         // Compute SGPA using standard credit-weighted formula (no manual decrease)
         const sgpa = (totalWeightedPoints / totalCredits).toFixed(2);
         sgpaResultSpan.textContent = sgpa;
-        
+
         // Show result screen, hide grades screen
         gradesScreen.classList.add('hidden');
         resultScreen.classList.remove('hidden');
-        
+
         // Remove any existing summary (show only SGPA value)
         let summaryDiv = document.getElementById('sgpa-summary');
         if (summaryDiv) {

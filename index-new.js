@@ -24,14 +24,14 @@ function selectDept() {
 function submitHandler() {
     const dept = document.getElementById('dept').value;
     const year = document.getElementById('year').value;
-    
+
     // Store in localStorage
     localStorage.setItem('selectedBranch', deptMap[dept]);
     localStorage.setItem('selectedYear', year);
-    
+
     // Redirect to SGPA calculator
     window.location.href = 'sgpa.html';
-    
+
     // Prevent default form submission
     return false;
 }

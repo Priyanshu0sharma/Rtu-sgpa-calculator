@@ -51,12 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
             semesterItem.className = 'semester-item';
             semesterItem.innerHTML = `
                 <label for="semester-${i}">Semester ${i} SGPA (0.00 - 10.00):</label>
-                <input 
-                    type="number" 
-                    id="semester-${i}" 
+                <input
+                    type="number"
+                    id="semester-${i}"
                     class="sgpa-input"
-                    min="0" 
-                    max="10" 
+                    min="0"
+                    max="10"
                     step="0.01"
                     placeholder="Enter SGPA"
                     data-semester="${i}"
